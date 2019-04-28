@@ -15,7 +15,6 @@ public class Field {
                 this.fieldArray[i][j] = "-";
             }
         }
-
         this.printField();
     }
 
@@ -33,22 +32,35 @@ public class Field {
             System.out.print("\n");
         }
     }
-
+     void printField(String[][] field) {
+        System.out.print("\n");
+        System.out.print("\n");
+        System.out.println(" 0  1  2  3  4  5  6  7  8  9  ");
+        for (int i = 0; i < 11; i++) {
+            System.out.print(i);
+            for (int j = 0; j < 11; j++) {
+                System.out.print(" ");
+                System.out.print(field[i][j]);
+                System.out.print(" ");
+            }
+            System.out.print("\n");
+        }
+    }
     void setRandomShips() {
 //        for (Ship s : this.ships) {
 //        for (int i = 0; i < ships.length; i++) {
-        ships[0] = new Ship(this, 6, "2");
-//        ships[1] = new Ship(this, 3, "3");
-//        ships[2] = new Ship(this, 4, "4");
-//        ships[3] = new Ship(this, 5, "5");
-//        ships[4] = new Ship(this, 6, "6");
+        ships[0] = new Ship(this, 2, "2");
+        ships[1] = new Ship(this, 3, "3");
+        ships[2] = new Ship(this, 4, "4");
+        ships[3] = new Ship(this, 5, "5");
+        ships[4] = new Ship(this, 6, "6");
 //            s = new Ship(2, "1", true, randomX, randomY);
-        this.fieldArray = ships[0].addShiptoField(this.fieldArray);
-        printField();
-//        for (Ship s : this.ships) {
-//            this.fieldArray = s.addShiptoField(this.fieldArray);
-//            printField();
-//        }
+//        this.fieldArray = ships[0].addShiptoField(this.fieldArray);
+//        printField();
+        for (Ship s : this.ships) {
+            this.fieldArray = s.init(this.fieldArray);
+            printField();
+        }
 
     }
 
