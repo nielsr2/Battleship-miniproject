@@ -4,6 +4,15 @@ public class Ship {
     int length;
     StringBuilder health = new StringBuilder("");
     boolean vertical, dead;
+
+    public int getX() {
+        return X;
+    }
+
+    public int getY() {
+        return Y;
+    }
+
     int X;
     int Y;
     String identifier;
@@ -123,6 +132,7 @@ public class Ship {
         }
     }
 
+    // CHECK IF [][] OCCUPIED
     boolean crossing(String[][] field) {
         boolean found = false;
         if (vertical) {
@@ -150,9 +160,9 @@ public class Ship {
         }
         return false;
     }
-
+//  Add to Field and return
     String[][] addShiptoField(String[][] field) {
-//        this.printField(field);
+//        this.printField(field)
         System.out.println(this.X + " " + this.Y);
 
 //        if (vertical) {
@@ -183,6 +193,23 @@ public class Ship {
 
     }
 
+   void printShipPosition() {
+        String[][] field = Field.emptyField();
+        if (vertical) {
+            for (int i = X; i < this.length + X; i++) {
+                field[i][this.Y] = this.identifier;
+            }
+        }
+
+        if (!vertical) {
+            for (int i = Y; i < this.length + Y; i++) {
+                field[this.X][i] = this.identifier;
+            }
+
+        }
+        this.printField(field);
+
+    }
 //    boolean outOfBound() {
 ////        System.out.println("BOUNDS, X: " + (this.X + this.length) + " Y: " + (this.Y + length));
 //        if (!this.vertical){

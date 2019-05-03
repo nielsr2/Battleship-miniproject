@@ -1,12 +1,18 @@
 package com.company;
 
-public class Player {
-    Field field;
+import java.util.Scanner;
 
-    Player() {
+public class Player extends Viewer {
+    Viewer selectView;
+
+    Field field;
+    String name;
+
+    Player(String name) {
+        this.name = name;
         field = new Field(10);
 //        this.defaultShips();
-        this.field.setRandomShips();
+//        this.field.setRandomShips();
 //        fire(1,1);
 //        fire(0,0);
 //        fire(1,2);
@@ -15,7 +21,8 @@ public class Player {
 //        fire(1,5);
 
     }
-    void defaultShips(){
+
+    void defaultShips() {
 //        this.field.ships = new Ship[5];
 //        this.field.ships[0] = new Ship(2, "1");
 //        this.field.placeShip(this.field.ships[0],true, 1,1);
@@ -23,8 +30,10 @@ public class Player {
 //        this.field.placeShip(this.field.ships[0],true, 1,1);
 
     }
+
+
     void fire(int x, int y) {
-    field.checkFire(x,y);
+        field.checkFire(x, y);
     }
 }
 

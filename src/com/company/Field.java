@@ -1,6 +1,6 @@
 package com.company;
 
-public class Field {
+public class Field extends Viewer {
     String[][] fieldArray;
     int fieldX;
     int fieldY;
@@ -15,7 +15,7 @@ public class Field {
                 this.fieldArray[i][j] = "-";
             }
         }
-        this.printField();
+//        this.printField();
     }
 
     void printField() {
@@ -32,7 +32,8 @@ public class Field {
             System.out.print("\n");
         }
     }
-     void printField(String[][] field) {
+
+    void printField(String[][] field) {
         System.out.print("\n");
         System.out.print("\n");
         System.out.println(" 0  1  2  3  4  5  6  7  8  9  ");
@@ -46,6 +47,15 @@ public class Field {
             System.out.print("\n");
         }
     }
+
+
+    void placeShipsRoutine() {
+
+        ships[0] = new Ship(this, 2, "2");
+    }
+
+    ;
+
     void setRandomShips() {
 //        for (Ship s : this.ships) {
 //        for (int i = 0; i < ships.length; i++) {
@@ -63,11 +73,6 @@ public class Field {
         }
 
     }
-
-    void newShip(int length, String identifier, boolean vertical, int X, int Y) {
-//        int length, String identifier,boolean vertical, int X, int Y
-    }
-
 
     void placeShip(Ship ship, boolean vertical, int X, int Y) {
         ship.place(vertical, X, Y);
@@ -100,5 +105,30 @@ public class Field {
             return false;
         }
 
+    }
+    static String[][] emptyField() {
+        String[][] emptyField = new String[this.fieldDimensions][this.fieldDimensions];
+        for (int i = 0; i < this.fieldDimensions; i++) {
+            for (int j = 0; j < this.fieldDimensions; j++) {
+                emptyField[i][j] = "-";
+            }
+        }
+        return emptyField;
+    }
+
+
+    static void printField2(String[][] field) {
+        System.out.print("\n");
+        System.out.print("\n");
+        System.out.println(" 0  1  2  3  4  5  6  7  8  9  ");
+        for (int i = 0; i < 10; i++) {
+            System.out.print(i);
+            for (int j = 0; j < 10; j++) {
+                System.out.print(" ");
+                System.out.print(field[i][j]);
+                System.out.print(" ");
+            }
+            System.out.print("\n");
+        }
     }
 }
