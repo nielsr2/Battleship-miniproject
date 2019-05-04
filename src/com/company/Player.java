@@ -35,6 +35,11 @@ public class Player extends Viewer {
     void fire(int x, int y) {
         field.checkFire(x, y);
     }
+
+    void placeShipsRoutine() {
+        field.ships[0] = new Ship(this.field, 2, "2");
+        this.field.selecting();
+    }
 }
 
 

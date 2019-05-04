@@ -26,19 +26,14 @@ public class Ship {
         }
         this.identifier = identifier;
         this.dead = false;
-
-
         System.out.println("dimension" + dimension + " length: " + length + " identifier: " + identifier + " vertical " + vertical + " X: " + X + " Y: " + Y);
     }
 
-    //    Ship(Field field, int length, String identifier, boolean vertical, int X, int Y) {
-//        this(field, length, identifier);
-//
-//
-//        this.place(vertical, X, Y);
-//    }
+
+
+
+
     String[][] init(String[][] field) {
-//        field
         this.place();
         if (this.crossing(field)){
             System.out.println("DUPE!!!!!");
@@ -117,7 +112,7 @@ public class Ship {
         return field;
     }
 
-    void printField(String[][] field) {
+    void printShip(String[][] field) {
         System.out.print("\n");
         System.out.print("\n");
         System.out.println(" 0  1  2  3  4  5  6  7  8  9  ");
@@ -194,7 +189,7 @@ public class Ship {
     }
 
    void printShipPosition() {
-        String[][] field = Field.emptyField();
+        String[][] field = Field.emptyField(10); // TODO EEEH FIX DIS
         if (vertical) {
             for (int i = X; i < this.length + X; i++) {
                 field[i][this.Y] = this.identifier;
@@ -207,7 +202,7 @@ public class Ship {
             }
 
         }
-        this.printField(field);
+        this.printShip(field);
 
     }
 //    boolean outOfBound() {

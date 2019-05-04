@@ -7,6 +7,8 @@ public class Field extends Viewer {
     int fieldDimensions;
     Ship[] ships = new Ship[5];
 
+
+
     Field(int fieldDimensions) {
         this.fieldDimensions = fieldDimensions;
         this.fieldArray = new String[this.fieldDimensions][this.fieldDimensions];
@@ -15,10 +17,11 @@ public class Field extends Viewer {
                 this.fieldArray[i][j] = "-";
             }
         }
-//        this.printField();
+//        this.printThisField();
     }
 
-    void printField() {
+    void printThisField() {
+        System.out.print("\n");
         System.out.print("\n");
         System.out.print("\n");
         System.out.println(" 0  1  2  3  4  5  6  7  8  9  ");
@@ -32,14 +35,17 @@ public class Field extends Viewer {
             System.out.print("\n");
         }
     }
-
-    void printField(String[][] field) {
+    static void printField(String[][] field) {
+        System.out.print("\n");
+        System.out.print("\n");
+        System.out.print("\n");
+        System.out.print("\n");
         System.out.print("\n");
         System.out.print("\n");
         System.out.println(" 0  1  2  3  4  5  6  7  8  9  ");
-        for (int i = 0; i < 11; i++) {
+        for (int i = 0; i < 10; i++) {
             System.out.print(i);
-            for (int j = 0; j < 11; j++) {
+            for (int j = 0; j < 10; j++) {
                 System.out.print(" ");
                 System.out.print(field[i][j]);
                 System.out.print(" ");
@@ -49,10 +55,8 @@ public class Field extends Viewer {
     }
 
 
-    void placeShipsRoutine() {
 
-        ships[0] = new Ship(this, 2, "2");
-    }
+
 
     ;
 
@@ -66,10 +70,10 @@ public class Field extends Viewer {
         ships[4] = new Ship(this, 6, "6");
 //            s = new Ship(2, "1", true, randomX, randomY);
 //        this.fieldArray = ships[0].addShiptoField(this.fieldArray);
-//        printField();
+//        printThisField();
         for (Ship s : this.ships) {
             this.fieldArray = s.init(this.fieldArray);
-            printField();
+            printThisField();
         }
 
     }
@@ -77,7 +81,7 @@ public class Field extends Viewer {
     void placeShip(Ship ship, boolean vertical, int X, int Y) {
         ship.place(vertical, X, Y);
 
-        this.printField();
+        this.printThisField();
     }
 
     boolean checkFire(int x, int y) {
@@ -94,22 +98,24 @@ public class Field extends Viewer {
 
                     }
 
-                    printField();
+                    printThisField();
                     return true;
                 }
             }
             return false;
         } else {
             fieldArray[x][y] = "o";
-            printField();
+            printThisField();
             return false;
         }
 
     }
-    static String[][] emptyField() {
-        String[][] emptyField = new String[this.fieldDimensions][this.fieldDimensions];
-        for (int i = 0; i < this.fieldDimensions; i++) {
-            for (int j = 0; j < this.fieldDimensions; j++) {
+
+    static String[][] emptyField(int dimensions) {
+        dimensions = 10;
+        String[][] emptyField = new String[dimensions][dimensions];
+        for (int i = 0; i < dimensions; i++) {
+            for (int j = 0; j < dimensions; j++) {
                 emptyField[i][j] = "-";
             }
         }

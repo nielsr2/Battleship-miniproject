@@ -9,6 +9,6 @@ public class Main {
 
     }
     void init(){
-//        playerone.printField();
+//        playerone.printThisField();
     }
 }
