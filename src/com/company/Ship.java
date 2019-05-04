@@ -1,5 +1,7 @@
 package com.company;
 
+import java.util.Scanner;
+
 public class Ship {
     int length;
     StringBuilder health = new StringBuilder("");
@@ -29,17 +31,44 @@ public class Ship {
         System.out.println("dimension" + dimension + " length: " + length + " identifier: " + identifier + " vertical " + vertical + " X: " + X + " Y: " + Y);
     }
 
-
-
-
-
     String[][] init(String[][] field) {
         this.place();
-        if (this.crossing(field)){
+        if (this.crossing(field)) {
             System.out.println("DUPE!!!!!");
             this.place();
         }
         return this.addShiptoField(field);
+    }
+
+    String[][] placeShipByInput(String[][] field) {
+        System.out.println("place a ship with " + this.length + " length.");
+        System.out.println("Place it horizontally or vertically? V/H");
+        Scanner sc = new Scanner(System.in);
+        if (sc.next().contains("H"))
+            this.vertical = false;
+        else
+            this.vertical = true;
+        System.out.print("X:");
+        this.X = Integer.parseInt(sc.next());
+        System.out.print("\nY:");
+        this.Y = Integer.parseInt(sc.next());
+//        } catch (Exception ex) {
+//            System.out.println("Out of bounds");
+////            this.placeShipByInput();
+//        }
+//        System.out.println("X" + this.X + " Y" + this.Y );
+        System.out.println(this.crossing(field));
+        if (this.crossing(field)) {
+            System.out.println("eeeh, crossing preivously placed ship, retry");
+            placeShipByInput(field);
+
+        }
+        else {
+
+        }
+        this.printShipPosition();
+        return addShiptoField(field);
+
     }
 
     void place(boolean vertical, int X, int Y) {
@@ -72,7 +101,7 @@ public class Ship {
 //        }
     }
 
-    void printStatus() {
+    void printHealth() {
         System.out.println(this.health);
     }
 
@@ -86,7 +115,7 @@ public class Ship {
         }
         health.setCharAt(hit, 'x');
         System.out.println("SHIP HIT AT " + hit + " OUT OF " + this.length);
-        printStatus();
+        printHealth();
     }
 
     boolean checkDeath() {
@@ -139,7 +168,7 @@ public class Ship {
                 }
             }
             if (found)
-            return true;
+                return true;
         } else if (!vertical) {
             for (int i = Y; i < this.length + Y; i++) {
                 if (field[this.X][i] != "-") {
@@ -155,10 +184,11 @@ public class Ship {
         }
         return false;
     }
-//  Add to Field and return
+
+    //  Add to Field and return
     String[][] addShiptoField(String[][] field) {
 //        this.printField(field)
-        System.out.println(this.X + " " + this.Y);
+//        System.out.println(this.X + " " + this.Y);
 
 //        if (vertical) {
 //            boolean alreadyPlaced = false;
@@ -181,26 +211,23 @@ public class Ship {
             for (int i = Y; i < this.length + Y; i++) {
                 field[this.X][i] = this.identifier;
             }
-
         }
-
+        System.out.println("added to field, now field is:");
+        Field.printField(field);
         return field;
-
     }
 
-   void printShipPosition() {
+    void printShipPosition() {
         String[][] field = Field.emptyField(10); // TODO EEEH FIX DIS
         if (vertical) {
             for (int i = X; i < this.length + X; i++) {
                 field[i][this.Y] = this.identifier;
             }
         }
-
         if (!vertical) {
             for (int i = Y; i < this.length + Y; i++) {
                 field[this.X][i] = this.identifier;
             }
-
         }
         this.printShip(field);
 

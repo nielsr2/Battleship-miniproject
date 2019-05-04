@@ -15,20 +15,26 @@ import com.googlecode.lanterna.terminal.swing.SwingTerminal;
 
 import static com.sun.java.accessibility.util.AWTEventMonitor.addKeyListener;
 
-import javax.swing.JFrame;
+
 
 
 public class Battleship {
     Player[] players = new Player[2];
     Screen screen;
-    KeyListener kl;
+
+
     boolean cursor = true;
     Battleship() {
         System.out.print("PLAYER ONE :");
         Scanner sc = new Scanner(System.in);
         players[0] = new Player(sc.next());
-        System.out.print("HELLO" + players[0].name + "PUT IN YOUR SHIPS");
-        players[0].placeShipsRoutine();
+        System.out.println("Hello " + players[0].name + "");
+        Player p1 = players[0];
+        Field p1f = p1.field;
+        p1.field.ships[0] = new Ship(p1f, 2, "2");
+        p1f.fieldArray = p1f.ships[0].placeShipByInput(p1f.fieldArray);
+        p1.field.ships[0] = new Ship(p1f, 3, "3");
+        p1f.fieldArray = p1f.ships[0].placeShipByInput(p1f.fieldArray);
 
 
     }
